@@ -1,90 +1,85 @@
 -- ==========================================
--- PANDA HUB - PREMIUM VERSION (NO KEY SYSTEM)
+-- PANDA HUB - ULTIMATE PREMIUM EDITION
+-- Theme: Bamboo Green | Language: English
+-- NO KEY SYSTEM - DIRECT QUANTUM EXECUTION
 -- ==========================================
 
--- 1. Configure the path to your GitHub repository
-local Directory = "https://raw.githubusercontent.com/dtdn24122012-byte/script/refs/heads/main"
-
--- 2. Game ID list to automatically load the corresponding Script
-local PlaceId = game.PlaceId
-local ScriptToLoad = nil
-
--- Automatically check the game you are playing to choose the right script file
-if PlaceId == 994732206 or PlaceId == 2753915549 then -- Blox Fruits ID
-    ScriptToLoad = Directory .. "/BloxFruits.lua"
-elseif PlaceId == 9186719164 then -- Sailor Piece ID
-    ScriptToLoad = Directory .. "/SailorPiece.lua"
-elseif PlaceId == 8191429227 then -- Cut Trees ID
-    ScriptToLoad = Directory .. "/CutTrees.lua"
-else
-    -- Default script if playing other games
-    ScriptToLoad = Directory .. "/BloxFruits.lua" 
-end
-
--- 3. Initialize User Interface (UI)
+-- 1. Initialize User Interface (UI) Elements
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local EnterButton = Instance.new("TextButton")
 local UICorner_Frame = Instance.new("UICorner")
 local UICorner_Button = Instance.new("UICorner")
+local UIStroke_Frame = Instance.new("UIStroke")
 
--- Main screen display configuration
-ScreenGui.Parent = game.CoreGui
+-- Parent the GUI to CoreGui to ensure it displays correctly in-game
+ScreenGui.Parent = game:GetService("CoreGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+-- Configure Main Frame (The window background)
 MainFrame.Name = "PandaMain"
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- Dark minimalist background
-MainFrame.Position = UDim2.new(0.5, -150, 0.5, -100) -- Center of the screen
+MainFrame.BackgroundColor3 = Color3.fromRGB(12, 18, 12) -- Deep dark green-black background
+MainFrame.Position = UDim2.new(0.5, -150, 0.5, -100)   -- Perfectly centered on screen
 MainFrame.Size = UDim2.new(0, 300, 0, 200)
 MainFrame.Active = true
-MainFrame.Draggable = true -- Allows you to drag the frame around
+MainFrame.Draggable = true -- Allows you to hold and drag the panel anywhere
 
-UICorner_Frame.CornerRadius = UDim.new(0, 12)
+UICorner_Frame.CornerRadius = UDim.new(0, 14)
 UICorner_Frame.Parent = MainFrame
 
--- Big "Panda hub" title in the center
+-- Elegant Bamboo Green Border Around the Panel
+UIStroke_Frame.Color = Color3.fromRGB(34, 139, 34) -- Forest Green
+UIStroke_Frame.Thickness = 2
+UIStroke_Frame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke_Frame.Parent = MainFrame
+
+-- Big "Panda hub" Title in the Center
 TitleLabel.Name = "Title"
 TitleLabel.Parent = MainFrame
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Position = UDim2.new(0, 0, 0.2, 0)
+TitleLabel.Position = UDim2.new(0, 0, 0.15, 0)
 TitleLabel.Size = UDim2.new(1, 0, 0.3, 0)
 TitleLabel.Font = Enum.Font.GothamBold
 TitleLabel.Text = "Panda hub"
-TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.TextColor3 = Color3.fromRGB(50, 205, 50) -- Vibrant Lime Green
 TitleLabel.TextSize = 38 
 
--- Single button below to execute the script
+-- Single Action Button "ENTER SCRIPT"
 EnterButton.Name = "EnterButton"
 EnterButton.Parent = MainFrame
-EnterButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255) -- Neon blue color
-EnterButton.Position = UDim2.new(0.1, 0, 0.65, 0)
+EnterButton.BackgroundColor3 = Color3.fromRGB(34, 139, 34) -- Forest Green Button
+EnterButton.Position = UDim2.new(0.1, 0, 0.62, 0)
 EnterButton.Size = UDim2.new(0.8, 0, 0.25, 0)
 EnterButton.Font = Enum.Font.GothamSemibold
-EnterButton.Text = "ENTER SCRIPT" -- Changed to English
-EnterButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+EnterButton.Text = "ENTER SCRIPT"
+EnterButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Clear White Text
 EnterButton.TextSize = 16
 
 UICorner_Button.CornerRadius = UDim.new(0, 8)
 UICorner_Button.Parent = EnterButton
 
--- 4. Handle script execution when "ENTER SCRIPT" is clicked
+-- Smooth Hover Effects (Changes color slightly when mouse enters/leaves)
+EnterButton.MouseEnter:Connect(function()
+    EnterButton.BackgroundColor3 = Color3.fromRGB(50, 205, 50) -- Light up
+end)
+EnterButton.MouseLeave:Connect(function()
+    EnterButton.BackgroundColor3 = Color3.fromRGB(34, 139, 34) -- Return to normal
+end)
+
+-- 2. Handle Script Execution on Click
 EnterButton.MouseButton1Click:Connect(function()
-    -- Safely destroy the UI right after clicking
+    -- Instantly destroy the loading UI for a seamless transition
     ScreenGui:Destroy()
     
-    -- Load and run the premium file from your GitHub
-    if ScriptToLoad then
-        local success, err = pcall(function()
-            loadstring(game:HttpGet(ScriptToLoad))()
-        end)
-        
-        -- If the file on GitHub is broken or empty, it logs an error in F9 Console
-        if not success then
-            warn("Panda Hub Error: Failed to load the main script. Error: " .. tostring(err))
-        end
-    else
-        warn("Panda Hub Error: No compatible script found for this game!")
+    -- Automatically fetch and run the main premium features from Quantum Onyx
+    local success, err = pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/Games/BloxFruits.lua"))()
+    end)
+    
+    -- If the external script fails to load, it prints a clean error in F9 Developer Console
+    if not success then
+        warn("Panda Hub Error: Failed to execute Quantum script. Details: " .. tostring(err))
     end
 end)
