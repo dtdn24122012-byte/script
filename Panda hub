@@ -1,4 +1,4 @@
-local Directory = "https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/Games"
+local Directory = "https://raw.githubusercontent.com/dtdn24122012-byte/script/refs/heads/main"
 local Api = "https://api.luarmor.net/files/v4/loaders"
 local Scripts = {
     Free = {
